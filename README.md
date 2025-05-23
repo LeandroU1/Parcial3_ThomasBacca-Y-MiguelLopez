@@ -4,7 +4,6 @@ Parcial numero 3 pensamiento algorítmico Pokémon y Parqueadero C++/Python Thom
 Integrantes:
 
 •	Thomas Leandro Bacca Beltrán
-
 •	Miguel Lopez
 
 ¿En qué consiste nuestro proyecto?
