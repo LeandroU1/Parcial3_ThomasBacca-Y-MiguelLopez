@@ -1,14 +1,14 @@
 fila = 8
 columna = 8
 mapa = [
-    ["E", "-", "-", "-", "-", "-", "-", "-"], #E significa Entrada
+    ["E", "-", "-", "-", "-", "-", "-", "-"],  # E significa Entrada
     ["V", "V", "V", "V", "V", "V", "V", "-"], 
     ["-", "-", "-", "-", "-", "-", "-", "-"],
-    ["-", "V", "V", "V", "V", "V", "V", "V"], #V significa Vacio
-    ["-", "-", "-", "-", "-", "-", "-", "-"], #- significa Via por la que el carro puede pasar para parquear o salir
+    ["-", "V", "V", "V", "V", "V", "V", "V"],  # V significa Vacío
+    ["-", "-", "-", "-", "-", "-", "-", "-"],  # - es Vía
     ["V", "V", "V", "V", "V", "V", "V", "-"],
     ["-", "-", "-", "-", "-", "-", "-", "-"],
-    ["S", "V", "V", "V", "V", "V", "V", "V"], #S significa Salida
+    ["S", "V", "V", "V", "V", "V", "V", "V"],  # S significa Salida
 ]
 
 Carros = {}
@@ -25,17 +25,17 @@ def Espacio():
             if mapa[i][j] == "V":
                 return (i, j)
     return None
-            
+
 def IngresarVehiculo():
-    placa = int(input("Ingrese la placa del Carro: "))
+    placa = input("Ingrese la placa del Carro: ")  # Manejado como texto
     if placa in Carros:
-        print ("El vehiculo se ingreso con exito: ")
+        print("El vehículo ya está registrado.")
         return
-    
+
     espacio = Espacio()
     if espacio:
         i, j = espacio
-        mapa [i][j] = "O" #O significa ocupado
+        mapa[i][j] = "O"  # O significa Ocupado
         hora_ingreso = int(input("Ingrese la hora de entrada del carro en minutos: "))
         Carros[placa] = (i, j, hora_ingreso)
         print(f"Carro con placa {placa} ingresado en la posición ({i},{j}) a los {hora_ingreso} minutos.")
@@ -60,7 +60,7 @@ def RetirarVehiculo():
     tarifa_minuto = 100
     total = tiempo * tarifa_minuto
 
-    mapa[i][j] = "V" #El espacio queda Vacio
+    mapa[i][j] = "V"  # El espacio queda vacío
     del Carros[placa]
 
     print(f"Vehículo con placa {placa} retirado.")
@@ -73,8 +73,8 @@ def MapaActualizado():
     for i in range(fila):
         for j in range(columna):
             print(mapa[i][j], end=" ")
-        print()  # Salto de línea al terminar cada fila
-    print()  # Espacio extra al final
+        print()
+    print()
 
 def Menu():
     while True:
@@ -97,4 +97,5 @@ def Menu():
             break
         else:
             print("Opción no válida. Intente de nuevo.")
+
 Menu()
