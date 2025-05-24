@@ -3,8 +3,8 @@ Parcial numero 3 pensamiento algorítmico Pokémon y Parqueadero C++/Python Thom
 
 Integrantes:
 
-•	Thomas Leandro Bacca Beltrán
-•	Miguel Lopez
+•	Thomas Leandro Bacca Beltrán/
+•	Miguel Lopez/
 
 # Parqueadero:
 • Diferencia de vehiculos y precio si es carro o moto
