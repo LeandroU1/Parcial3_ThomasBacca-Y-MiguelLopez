@@ -1,101 +1,136 @@
 fila = 8
 columna = 8
 mapa = [
-    ["E", "-", "-", "-", "-", "-", "-", "-"],  # E significa Entrada
-    ["V", "V", "V", "V", "V", "V", "V", "-"], 
-    ["-", "-", "-", "-", "-", "-", "-", "-"],
-    ["-", "V", "V", "V", "V", "V", "V", "V"],  # V significa Vacío
-    ["-", "-", "-", "-", "-", "-", "-", "-"],  # - es Vía
+    ["E", "-", "-", "-", "-", "-", "-", "-"],
     ["V", "V", "V", "V", "V", "V", "V", "-"],
     ["-", "-", "-", "-", "-", "-", "-", "-"],
-    ["S", "V", "V", "V", "V", "V", "V", "V"],  # S significa Salida
+    ["-", "V", "V", "V", "V", "V", "V", "V"],
+    ["-", "-", "-", "-", "-", "-", "-", "-"],
+    ["V", "V", "V", "V", "V", "V", "V", "-"],
+    ["-", "-", "-", "-", "-", "-", "-", "-"],
+    ["S", "V", "V", "V", "V", "V", "V", "V"],
 ]
 
-Carros = {}
+vehiculos = {}
+dinero = 0
 
-def MostarMapa():
-    print("El mapa es: ")
+def mostrar_mapa():
     for fila in mapa:
         print(" ", fila)
-    print()
 
-def Espacio():
-    for i in range(fila):
-        for j in range(columna):
+def espacios_disponibles():
+    libres = 0
+    for i in range(8):
+        for j in range(8):
             if mapa[i][j] == "V":
-                return (i, j)
+                libres += 1
+
+    print(f"Espacios disponibles: {libres}")
+    print("Vista como dios del parqueadero:")
+    for fila in mapa:
+        print(" ", " ".join(fila))
+    return libres
+
+def estadisticas():
+    carros = 0
+    motos = 0
+    for datos in vehiculos.values():
+        if datos[3] == "carro":
+            carros += 1
+        elif datos[3] == "moto":
+            motos += 1
+
+    print("Estadísticas del sistema")
+    print(f"Vehículos en parqueadero: {len(vehiculos)}")
+    print(f"Carros: {carros}")
+    print(f"Motos: {motos}")
+    espacios_disponibles()
+    print(f"Dinero recaudado: ${dinero}")
+
+def buscar_espacio():
+    for i in range(8):
+        for j in range(8):
+            if mapa[i][j] == "V":
+                return i, j
     return None
 
-def IngresarVehiculo():
-    placa = input("Ingrese la placa del Carro: ")  # Manejado como texto
-    if placa in Carros:
-        print("El vehículo ya está registrado.")
+def ingresar():
+    placa = input("Placa del vehículo: ")
+    tipo = input("¿Es carro o moto?: ")
+
+    if tipo not in ["carro", "moto"]:
+        print("Tipo no válido.")
         return
 
-    espacio = Espacio()
-    if espacio:
-        i, j = espacio
-        mapa[i][j] = "O"  # O significa Ocupado
-        hora_ingreso = int(input("Ingrese la hora de entrada del carro en minutos: "))
-        Carros[placa] = (i, j, hora_ingreso)
-        print(f"Carro con placa {placa} ingresado en la posición ({i},{j}) a los {hora_ingreso} minutos.")
-        MostarMapa()
-    else:
-        print("No hay espacios disponibles.")
+    lugar = buscar_espacio()
+    if not lugar:
+        print("No hay espacio disponible.")
+        return
 
-def RetirarVehiculo():
-    placa = input("Ingrese la placa del carro a retirar: ")
-    if placa not in Carros:
+    hora = int(input("Hora de entrada (0-23): "))
+    minutos = int(input("Minutos (0-59): "))
+    entrada = hora * 60 + minutos
+
+    i, j = lugar
+    mapa[i][j] = "O" if tipo == "carro" else "M"
+    vehiculos[placa] = [i, j, entrada, tipo]
+    print(f"{tipo.capitalize()} con placa {placa} ingresado en ({i},{j})")
+
+    estadisticas()
+
+def retirar():
+    global dinero
+    placa = input("Placa del vehículo a retirar: ")
+
+    if placa not in vehiculos:
         print("Vehículo no encontrado.")
         return
 
-    i, j, hora_entrada = Carros[placa]
-    hora_salida = int(input("Ingrese la hora de salida del carro en minutos: "))
-    tiempo = hora_salida - hora_entrada
+    hora = int(input("Hora de salida (0-23): "))
+    minutos = int(input("Minutos (0-59): "))
+    salida = hora * 60 + minutos
 
+    i, j, entrada, tipo = vehiculos[placa]
+    tiempo = salida - entrada
     if tiempo <= 0:
-        print("Error: la hora de salida debe ser mayor que la de entrada.")
+        print("Error: la salida debe ser después de la entrada.")
         return
 
-    tarifa_minuto = 100
-    total = tiempo * tarifa_minuto
+    tarifa = 100 if tipo == "carro" else 50
+    total = tiempo * tarifa
+    dinero += total
 
-    mapa[i][j] = "V"  # El espacio queda vacío
-    del Carros[placa]
+    mapa[i][j] = "V"
+    del vehiculos[placa]
 
-    print(f"Vehículo con placa {placa} retirado.")
-    print(f"Tiempo en parqueadero: {tiempo} minutos.")
+    print(f"Vehículo {placa} retirado.")
+    print(f"Tiempo: {tiempo} minutos")
     print(f"Total a pagar: ${total}")
-    MostarMapa()
 
-def MapaActualizado():
-    print("Mapa actualizado del parqueadero es:")
-    for i in range(fila):
-        for j in range(columna):
-            print(mapa[i][j], end=" ")
-        print()
-    print()
+    estadisticas()
 
-def Menu():
+def menu():
     while True:
-        print("Menu del super Parqueadero de Miguel y Thomas")
-        print("1. Ingresar un vehículo")
-        print("2. Retirar un vehículo")
-        print("3. Mostrar mapa actualizado")
-        print("4. Salir")
-
-        opcion = input("Seleccione una opción: ")
+        print("Menú del Super Parqueadero Miguel y Leandro")
+        print("1. Ingresar vehículo")
+        print("2. Retirar vehículo")
+        print("3. Ver mapa actual")
+        print("4. Ver estadísticas")
+        print("5. Salir")
+        opcion = input("Opción: ")
 
         if opcion == "1":
-            IngresarVehiculo()
+            ingresar()
         elif opcion == "2":
-            RetirarVehiculo()
+            retirar()
         elif opcion == "3":
-            MapaActualizado()
+            espacios_disponibles()
         elif opcion == "4":
-            print("Saliendo del sistema. ¡Gracias!")
+            estadisticas()
+        elif opcion == "5":
+            print("Gracias por usar nuestro sistema de parqueadero. Profe, pónganos 50 :)")
             break
         else:
-            print("Opción no válida. Intente de nuevo.")
+            print("Opción no válida.")
 
-Menu()
+menu()
