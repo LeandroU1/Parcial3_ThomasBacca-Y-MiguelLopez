@@ -11,3 +11,8 @@ Integrantes:
 • Estadisticas del sistema actualizadas a tiempo real
 • Calculo a tiempo real de las ganancias totales en dinero
 • Vista del parqueadero
+
+#Pokemon
+• Multijugador Local para 2 personas
+• La posibilidad de escoger a 4 pokemones con ataques diferentes
+• Todos los ataques tienen diferentes valores de daño
