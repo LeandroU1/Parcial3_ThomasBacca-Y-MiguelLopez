@@ -45,26 +45,3 @@ Un mini-juego por turnos inspirado en Pokémon, diseñado para dos jugadores loc
 
 - **Ataques con Diferente Daño**  
   Cada ataque tiene un valor de daño distinto, permitiendo estrategias variadas.
-
----
-
-## Tecnologías Usadas
-
-- **Python** – Lógica del parqueadero y visualización.
-- **C++** – Desarrollo del juego tipo Pokémon y simulación.
-
----
-
-## Estado del Proyecto
-
-✅ Funcionalidades básicas completas  
-🔄 Mejoras visuales y optimización en desarrollo  
-🧪 Pruebas en curso
-
----
-
-## Cómo Ejecutar
-
-### Parqueadero (Python)
-```bash
-python parqueadero.py
