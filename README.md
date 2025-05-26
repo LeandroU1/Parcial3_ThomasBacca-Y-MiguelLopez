@@ -1,18 +1,70 @@
-# Parcial3_ThomasBacca-Y-MiguelLopez
-Parcial numero 3 pensamiento algorítmico Pokémon y Parqueadero C++/Python Thomas Bacca y Miguel Lopez
+# Parcial 3 - Pensamiento Algorítmico: Pokémon y Parqueadero (C++ / Python)
 
-Integrantes:
+## Integrantes:
+- **Thomas Leandro Bacca Beltrán**  
+- **Miguel Lopez**
 
-•	Thomas Leandro Bacca Beltrán
-•	Miguel Lopez
+---
 
-# Parqueadero:
-• Diferencia de vehiculos y precio si es carro o moto
-• Estadisticas del sistema actualizadas a tiempo real
-• Calculo a tiempo real de las ganancias totales en dinero
-• Vista del parqueadero
+## Descripción General
 
-#Pokemon
-• Multijugador Local para 2 personas
-• La posibilidad de escoger a 4 pokemones con ataques diferentes
-• Todos los ataques tienen diferentes valores de daño
+Este proyecto incluye dos componentes principales desarrollados en C++ y Python:
+
+1. **Simulador de Parqueadero Inteligente**
+2. **Juego Pokémon Multijugador Local**
+
+---
+
+## 🚗 Parqueadero
+
+Un sistema interactivo que simula la administración de un parqueadero, con funciones como:
+
+- **Diferenciación de Vehículos**  
+  El sistema distingue entre **carros** y **motos**, aplicando tarifas diferentes según el tipo.
+
+- **Estadísticas en Tiempo Real**  
+  Monitoreo en vivo del número de vehículos y su tipo, además de la disponibilidad de espacios.
+
+- **Cálculo de Ganancias**  
+  Suma automática de las ganancias totales en tiempo real, según los ingresos por tipo de vehículo.
+
+- **Vista Gráfica del Parqueadero**  
+  Representación visual del estado actual del parqueadero.
+
+---
+
+## 🎮 Pokémon (Juego Local para 2 Jugadores)
+
+Un mini-juego por turnos inspirado en Pokémon, diseñado para dos jugadores locales:
+
+- **Multijugador Local (2 Jugadores)**  
+  Cada jugador escoge sus Pokémon y se turnan para atacar.
+
+- **Selección de Pokémon**  
+  Cada jugador puede elegir **4 Pokémon**, cada uno con ataques únicos.
+
+- **Ataques con Diferente Daño**  
+  Cada ataque tiene un valor de daño distinto, permitiendo estrategias variadas.
+
+---
+
+## Tecnologías Usadas
+
+- **Python** – Lógica del parqueadero y visualización.
+- **C++** – Desarrollo del juego tipo Pokémon y simulación.
+
+---
+
+## Estado del Proyecto
+
+✅ Funcionalidades básicas completas  
+🔄 Mejoras visuales y optimización en desarrollo  
+🧪 Pruebas en curso
+
+---
+
+## Cómo Ejecutar
+
+### Parqueadero (Python)
+```bash
+python parqueadero.py
