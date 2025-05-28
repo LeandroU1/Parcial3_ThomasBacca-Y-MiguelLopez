@@ -33,7 +33,7 @@ Un sistema interactivo que simula la administración de un parqueadero, con func
 
 ---
 
-## 🎮 Pokémon (Juego Local para 2 Jugadores)
+## Pokémon (Juego Local para 2 Jugadores)
 
 Un mini-juego por turnos inspirado en Pokémon, diseñado para dos jugadores locales:
 
