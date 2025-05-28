@@ -15,7 +15,7 @@ Este proyecto incluye dos componentes principales desarrollados en C++ y Python:
 
 ---
 
-## 🚗 Parqueadero
+## Parqueadero
 
 Un sistema interactivo que simula la administración de un parqueadero, con funciones como:
 
